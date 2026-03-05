@@ -3,9 +3,13 @@ Performance Dashboard Backend API — Vercel Serverless Entry Point
 Stateless Flask app: parses files in-memory via tempfile, no persistent storage needed.
 """
 
+import sys
+import os
+# Make sure parsers/ and analyzers/ (siblings of this file) are importable
+sys.path.insert(0, os.path.dirname(__file__))
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import os
 import tempfile
 
 from parsers.jtl_parser import JTLParser
