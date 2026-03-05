@@ -2,11 +2,6 @@
   "buildCommand": "cd performance-dashboard/frontend && npm install && npm run build",
   "outputDirectory": "performance-dashboard/frontend/dist",
   "installCommand": "echo 'skip root install'",
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 30
-    }
-  },
   "rewrites": [
     { "source": "/health", "destination": "/api/index" },
     { "source": "/api/:path*", "destination": "/api/index" }
