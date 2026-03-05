@@ -500,6 +500,7 @@ const AdvancedAnalysis: React.FC<AdvancedAnalysisProps> = ({ metricsData }) => {
             display: 'flex', gap: '4px', padding: '10px 18px 0',
             borderBottom: '1px solid var(--border-color, #e5e7eb)',
             overflowX: 'auto',
+            overflowY: 'hidden',
           }}>
             {TABS.map(tab => (
               <button

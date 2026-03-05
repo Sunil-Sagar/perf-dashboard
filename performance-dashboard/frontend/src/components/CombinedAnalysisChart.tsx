@@ -202,7 +202,7 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
         <ResponsiveContainer width="100%" height={400}>
           <LineChart
             data={displayData}
-            margin={{ top: 35, right: 60, left: 60, bottom: 60 }}
+            margin={{ top: 10, right: 60, left: 60, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
             <XAxis 
@@ -234,11 +234,11 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
             <Tooltip content={<CustomTooltip />} />
             <Legend
               layout="horizontal"
-              verticalAlign="top"
+              verticalAlign="bottom"
               align="center"
-              wrapperStyle={{ paddingBottom: '10px', cursor: 'pointer', maxHeight: '72px', overflowY: 'auto' }}
+              wrapperStyle={{ paddingTop: '12px', cursor: 'pointer' }}
               iconType="line"
-              formatter={(value: string) => value.length > 22 ? value.slice(0, 20) + '…' : value}
+              formatter={(value: string) => value.length > 25 ? value.slice(0, 23) + '…' : value}
               onClick={(e: any) => {
                 const dataKey = e.dataKey;
                 if (dataKey && dataKey !== 'activeThreads') {

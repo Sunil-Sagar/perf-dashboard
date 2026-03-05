@@ -339,6 +339,10 @@ const AdvancedInsights: React.FC<AdvancedInsightsProps> = ({
                       dataKey="time"
                       tick={{ fontSize: 10 }}
                       interval={Math.floor(insights.slaTimeline.length / 5)}
+                      tickFormatter={(val: string) => {
+                        const t = val.includes('T') ? val.split('T')[1] : val
+                        return t ? t.slice(0, 5) : val
+                      }}
                     />
                     <YAxis tick={{ fontSize: 10 }} />
                     <Tooltip formatter={(v: any, name: string) => [`${Number(v).toFixed(0)} ms`, name]} />
@@ -365,7 +369,7 @@ const AdvancedInsights: React.FC<AdvancedInsightsProps> = ({
                   <ScatterChart margin={{ top: 4, right: 10, left: 0, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                     <XAxis dataKey="x" type="number" name="Interval" tick={{ fontSize: 10 }} label={{ value: 'Time Interval', position: 'insideBottom', offset: -10, style: { fontSize: 10 } }} />
-                    <YAxis type="number" tick={{ fontSize: 10 }} label={{ value: 'req/s', angle: -90, position: 'insideLeft', style: { fontSize: 10 } }} />
+                    <YAxis type="number" domain={[0, (dataMax: number) => Math.ceil(Math.max(dataMax * 1.2, slaThroughput > 0 ? slaThroughput * 1.1 : dataMax * 1.2))]} tick={{ fontSize: 10 }} label={{ value: 'req/s', angle: -90, position: 'insideLeft', style: { fontSize: 10 } }} />
                     <Tooltip cursor={{ strokeDasharray: '3 3' }} formatter={(v: any, name: string) => [Number(v).toFixed(1), name]} />
                     <ReferenceLine y={slaThroughput > 0 ? slaThroughput : undefined} stroke="#ef4444" strokeDasharray="4 3" label={{ value: 'Target', fontSize: 9, fill: '#ef4444', position: 'right' }} />
                     {/* Projected regression line */}
