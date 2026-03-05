@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useState } from 'react';
 
 interface CombinedAnalysisChartProps {
@@ -172,8 +172,7 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
       backgroundColor: 'white', 
       padding: '20px', 
       borderRadius: '8px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-      minHeight: '500px'
+      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
     }}>
       <div style={{ 
         display: 'flex', 
@@ -232,28 +231,6 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
               />
             )}
             <Tooltip content={<CustomTooltip />} />
-            <Legend
-              layout="horizontal"
-              verticalAlign="bottom"
-              align="center"
-              wrapperStyle={{ paddingTop: '12px', cursor: 'pointer' }}
-              iconType="line"
-              formatter={(value: string) => value.length > 25 ? value.slice(0, 23) + '…' : value}
-              onClick={(e: any) => {
-                const dataKey = e.dataKey;
-                if (dataKey && dataKey !== 'activeThreads') {
-                  setHiddenTransactions(prev => {
-                    const newSet = new Set(prev);
-                    if (newSet.has(dataKey)) {
-                      newSet.delete(dataKey);
-                    } else {
-                      newSet.add(dataKey);
-                    }
-                    return newSet;
-                  });
-                }
-              }}
-            />
           {labels.map((label, index) => (
             <Line
               key={label}
@@ -284,6 +261,34 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
           )}
         </LineChart>
       </ResponsiveContainer>
+      </div>
+
+      {/* Custom legend rendered outside the fixed-height chart */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px', marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #f0f0f0' }}>
+        {labels.map((label, index) => {
+          const isHidden = hiddenTransactions.has(label)
+          const color = colors[index % colors.length]
+          return (
+            <div
+              key={label}
+              onClick={() => setHiddenTransactions(prev => {
+                const s = new Set(prev)
+                s.has(label) ? s.delete(label) : s.add(label)
+                return s
+              })}
+              style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', opacity: isHidden ? 0.35 : 1 }}
+            >
+              <svg width="16" height="4"><line x1="0" y1="2" x2="16" y2="2" stroke={color} strokeWidth="2.5" /></svg>
+              <span style={{ fontSize: '11px', color: '#374151', maxWidth: '160px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
+            </div>
+          )
+        })}
+        {threadsData && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <svg width="16" height="4"><line x1="0" y1="2" x2="16" y2="2" stroke="#999" strokeWidth="2" strokeDasharray="4 2" /></svg>
+            <span style={{ fontSize: '11px', color: '#374151' }}>Active Threads</span>
+          </div>
+        )}
       </div>
     </div>
   );

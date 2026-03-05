@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useState } from 'react';
 
 interface ResponseTimeChartProps {
@@ -74,8 +74,7 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
 
   return (
     <div
-      style={{ width: '100%', minHeight: '500px', background: 'white', padding: '20px', paddingBottom: '32px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', overflow: 'hidden' }}
-      onWheel={handleWheel}
+      style={{ width: '100%', background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: '#1a2332' }}>Response Time</h3>
@@ -93,8 +92,9 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
         Showing {labels.length} transaction{labels.length !== 1 ? 's' : ''} • Hover for details
       </div>
       
-      <ResponsiveContainer width="100%" height={400}>
-        <LineChart data={chartData.slice(brushRange.startIndex, brushRange.endIndex + 1)} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <div onWheel={handleWheel}>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={chartData.slice(brushRange.startIndex, brushRange.endIndex + 1)} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis 
             dataKey="time" 
@@ -119,11 +119,6 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
             }}
             formatter={(value: any) => [`${Math.round(value)}ms`, '']}
           />
-          <Legend
-            wrapperStyle={{ fontSize: '11px', maxHeight: '72px', overflowY: 'auto', paddingTop: '6px' }}
-            iconType="line"
-            formatter={(value: string) => value.length > 22 ? value.slice(0, 20) + '…' : value}
-          />
           {labels.map((label, index) => (
             <Line
               key={label}
@@ -138,6 +133,23 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
           ))}
         </LineChart>
       </ResponsiveContainer>
+      </div>
+
+      {/* Custom legend rendered outside the fixed-height chart */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px', marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #f0f0f0' }}>
+        {labels.map((label, index) => {
+          const color = colors[index % colors.length]
+          return (
+            <div
+              key={label}
+              style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+            >
+              <svg width="16" height="4"><line x1="0" y1="2" x2="16" y2="2" stroke={color} strokeWidth="2.5" /></svg>
+              <span style={{ fontSize: '11px', color: '#374151', maxWidth: '160px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
+            </div>
+          )
+        })}
+      </div>
     </div>
   );
 };
