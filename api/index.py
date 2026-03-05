@@ -5,13 +5,14 @@ Stateless Flask app: parses files in-memory via tempfile, no persistent storage 
 
 import sys
 import os
+import math
+import tempfile
+
 # Make sure parsers/ and analyzers/ (siblings of this file) are importable
 sys.path.insert(0, os.path.dirname(__file__))
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import tempfile
-
 from parsers.jtl_parser import JTLParser
 from analyzers.metrics_calculator import MetricsCalculator
 
@@ -19,6 +20,19 @@ app = Flask(__name__)
 CORS(app)
 
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB
+
+
+def _sanitize(obj):
+    """Recursively replace Infinity / NaN with 0 so JSON serialization never fails."""
+    if isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return 0
+        return obj
+    if isinstance(obj, dict):
+        return {k: _sanitize(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_sanitize(v) for v in obj]
+    return obj
 
 
 def _parse_upload(file, interval: float):
@@ -34,7 +48,7 @@ def _parse_upload(file, interval: float):
         metrics = calculator.get_all_metrics(interval_seconds=interval)
         summary = parser.get_summary()
         metrics['summary'] = summary
-        return metrics, summary, file_ext
+        return _sanitize(metrics), _sanitize(summary), file_ext
     finally:
         try:
             os.unlink(tmp_path)

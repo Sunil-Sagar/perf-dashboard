@@ -73,8 +73,8 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
   };
 
   return (
-    <div 
-      style={{ width: '100%', minHeight: '500px', background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+    <div
+      style={{ width: '100%', minHeight: '500px', background: 'white', padding: '20px', paddingBottom: '32px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', overflow: 'hidden' }}
       onWheel={handleWheel}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
@@ -107,6 +107,7 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
             label={{ value: 'Response Time (ms)', angle: -90, position: 'insideLeft', style: { fontSize: '12px', fill: '#6b7280' } }}
             stroke="#6b7280"
             style={{ fontSize: '11px' }}
+            domain={[0, 'auto']}
           />
           <Tooltip 
             labelFormatter={formatTime}
@@ -118,9 +119,10 @@ const ResponseTimeChart = ({ data }: ResponseTimeChartProps) => {
             }}
             formatter={(value: any) => [`${Math.round(value)}ms`, '']}
           />
-          <Legend 
-            wrapperStyle={{ fontSize: '11px' }}
+          <Legend
+            wrapperStyle={{ fontSize: '11px', maxHeight: '72px', overflowY: 'auto', paddingTop: '6px' }}
             iconType="line"
+            formatter={(value: string) => value.length > 22 ? value.slice(0, 20) + '…' : value}
           />
           {labels.map((label, index) => (
             <Line

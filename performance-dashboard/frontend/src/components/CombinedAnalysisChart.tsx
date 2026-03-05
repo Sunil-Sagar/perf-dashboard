@@ -219,6 +219,7 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
               label={{ value: 'Response Time (ms)', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle' } }}
               tick={{ fontSize: 12 }}
               stroke="#666"
+              domain={[0, 'auto']}
             />
             {threadsData && (
               <YAxis 
@@ -227,15 +228,17 @@ const CombinedAnalysisChart = ({ data, threadsData }: CombinedAnalysisChartProps
                 label={{ value: 'Active Threads', angle: 90, position: 'insideRight', style: { textAnchor: 'middle' } }}
                 tick={{ fontSize: 12 }}
                 stroke="#666"
+                domain={[0, 'auto']}
               />
             )}
             <Tooltip content={<CustomTooltip />} />
-            <Legend 
+            <Legend
               layout="horizontal"
               verticalAlign="top"
               align="center"
-              wrapperStyle={{ paddingBottom: '10px', cursor: 'pointer' }}
+              wrapperStyle={{ paddingBottom: '10px', cursor: 'pointer', maxHeight: '72px', overflowY: 'auto' }}
               iconType="line"
+              formatter={(value: string) => value.length > 22 ? value.slice(0, 20) + '…' : value}
               onClick={(e: any) => {
                 const dataKey = e.dataKey;
                 if (dataKey && dataKey !== 'activeThreads') {

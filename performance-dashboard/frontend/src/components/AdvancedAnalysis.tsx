@@ -302,7 +302,7 @@ const HeatmapTab: React.FC<{ metricsData: any }> = ({ metricsData }) => {
         <BarChart
           layout="vertical"
           data={data}
-          margin={{ top: 4, right: 60, left: 60, bottom: 20 }}
+          margin={{ top: 4, right: 60, left: 10, bottom: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
           <XAxis
@@ -314,8 +314,12 @@ const HeatmapTab: React.FC<{ metricsData: any }> = ({ metricsData }) => {
             type="category"
             dataKey="time"
             tick={{ fontSize: 10 }}
-            width={55}
-            label={{ value: 'Time Interval', angle: -90, position: 'insideLeft', offset: -5, style: { fontSize: 11 } }}
+            width={52}
+            tickFormatter={(val: string) => {
+              // Extract HH:MM from ISO string like "2025-09-29T08:30:16" or "08:30:16"
+              const t = val.includes('T') ? val.split('T')[1] : val
+              return t ? t.slice(0, 5) : val
+            }}
           />
           <Tooltip
             formatter={(v: any) => [`${Number(v).toFixed(0)} ms`, metric.toUpperCase()]}
