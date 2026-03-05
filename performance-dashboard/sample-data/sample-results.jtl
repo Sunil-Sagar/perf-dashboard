@@ -1,0 +1,41 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1709049600000,234,HTTP Request - Login,200,OK,Thread Group 1-1,text,true,,2456,512,10,10,https://example.com/api/login,156,0,45
+1709049600200,189,HTTP Request - Dashboard,200,OK,Thread Group 1-1,text,true,,15678,498,10,10,https://example.com/api/dashboard,145,0,0
+1709049600450,412,HTTP Request - User Profile,200,OK,Thread Group 1-1,text,true,,8934,523,10,10,https://example.com/api/user/profile,389,0,0
+1709049600850,523,HTTP Request - Search,200,OK,Thread Group 1-1,text,true,,23456,645,10,10,https://example.com/api/search,498,0,0
+1709049601100,156,HTTP Request - Login,200,OK,Thread Group 1-2,text,true,,2456,512,10,10,https://example.com/api/login,134,0,42
+1709049601250,203,HTTP Request - Dashboard,200,OK,Thread Group 1-2,text,true,,15678,498,10,10,https://example.com/api/dashboard,187,0,0
+1709049601500,345,HTTP Request - User Profile,200,OK,Thread Group 1-2,text,true,,8934,523,10,10,https://example.com/api/user/profile,312,0,0
+1709049601800,489,HTTP Request - Search,200,OK,Thread Group 1-2,text,true,,23456,645,10,10,https://example.com/api/search,456,0,0
+1709049602000,267,HTTP Request - Login,200,OK,Thread Group 1-3,text,true,,2456,512,10,10,https://example.com/api/login,245,0,38
+1709049602200,178,HTTP Request - Dashboard,200,OK,Thread Group 1-3,text,true,,15678,498,10,10,https://example.com/api/dashboard,156,0,0
+1709049602450,567,HTTP Request - User Profile,500,Internal Server Error,Thread Group 1-3,text,false,Connection timeout,0,523,10,10,https://example.com/api/user/profile,0,0,0
+1709049602900,198,HTTP Request - Search,200,OK,Thread Group 1-3,text,true,,23456,645,10,10,https://example.com/api/search,178,0,0
+1709049603100,289,HTTP Request - Login,200,OK,Thread Group 1-4,text,true,,2456,512,10,10,https://example.com/api/login,267,0,41
+1709049603300,234,HTTP Request - Dashboard,200,OK,Thread Group 1-4,text,true,,15678,498,10,10,https://example.com/api/dashboard,212,0,0
+1709049603550,423,HTTP Request - User Profile,200,OK,Thread Group 1-4,text,true,,8934,523,10,10,https://example.com/api/user/profile,398,0,0
+1709049603900,512,HTTP Request - Search,200,OK,Thread Group 1-4,text,true,,23456,645,10,10,https://example.com/api/search,489,0,0
+1709049604100,198,HTTP Request - Login,200,OK,Thread Group 1-5,text,true,,2456,512,10,10,https://example.com/api/login,176,0,39
+1709049604300,167,HTTP Request - Dashboard,200,OK,Thread Group 1-5,text,true,,15678,498,10,10,https://example.com/api/dashboard,145,0,0
+1709049604550,389,HTTP Request - User Profile,200,OK,Thread Group 1-5,text,true,,8934,523,10,10,https://example.com/api/user/profile,367,0,0
+1709049604900,456,HTTP Request - Search,200,OK,Thread Group 1-5,text,true,,23456,645,10,10,https://example.com/api/search,434,0,0
+1709049605100,312,HTTP Request - Login,200,OK,Thread Group 1-6,text,true,,2456,512,10,10,https://example.com/api/login,289,0,44
+1709049605300,245,HTTP Request - Dashboard,200,OK,Thread Group 1-6,text,true,,15678,498,10,10,https://example.com/api/dashboard,223,0,0
+1709049605550,478,HTTP Request - User Profile,200,OK,Thread Group 1-6,text,true,,8934,523,10,10,https://example.com/api/user/profile,445,0,0
+1709049605900,534,HTTP Request - Search,200,OK,Thread Group 1-6,text,true,,23456,645,10,10,https://example.com/api/search,512,0,0
+1709049606100,223,HTTP Request - Login,200,OK,Thread Group 1-7,text,true,,2456,512,10,10,https://example.com/api/login,201,0,37
+1709049606300,189,HTTP Request - Dashboard,404,Not Found,Thread Group 1-7,text,false,Resource not found,1234,498,10,10,https://example.com/api/dashboard,0,0,0
+1709049606550,401,HTTP Request - User Profile,200,OK,Thread Group 1-7,text,true,,8934,523,10,10,https://example.com/api/user/profile,378,0,0
+1709049606900,467,HTTP Request - Search,200,OK,Thread Group 1-7,text,true,,23456,645,10,10,https://example.com/api/search,445,0,0
+1709049607100,256,HTTP Request - Login,200,OK,Thread Group 1-8,text,true,,2456,512,10,10,https://example.com/api/login,234,0,40
+1709049607300,212,HTTP Request - Dashboard,200,OK,Thread Group 1-8,text,true,,15678,498,10,10,https://example.com/api/dashboard,189,0,0
+1709049607550,445,HTTP Request - User Profile,200,OK,Thread Group 1-8,text,true,,8934,523,10,10,https://example.com/api/user/profile,423,0,0
+1709049607900,489,HTTP Request - Search,200,OK,Thread Group 1-8,text,true,,23456,645,10,10,https://example.com/api/search,467,0,0
+1709049608100,278,HTTP Request - Login,200,OK,Thread Group 1-9,text,true,,2456,512,10,10,https://example.com/api/login,256,0,43
+1709049608300,198,HTTP Request - Dashboard,200,OK,Thread Group 1-9,text,true,,15678,498,10,10,https://example.com/api/dashboard,176,0,0
+1709049608550,412,HTTP Request - User Profile,200,OK,Thread Group 1-9,text,true,,8934,523,10,10,https://example.com/api/user/profile,389,0,0
+1709049608900,501,HTTP Request - Search,200,OK,Thread Group 1-9,text,true,,23456,645,10,10,https://example.com/api/search,478,0,0
+1709049609100,245,HTTP Request - Login,200,OK,Thread Group 1-10,text,true,,2456,512,10,10,https://example.com/api/login,223,0,36
+1709049609300,234,HTTP Request - Dashboard,200,OK,Thread Group 1-10,text,true,,15678,498,10,10,https://example.com/api/dashboard,212,0,0
+1709049609550,434,HTTP Request - User Profile,200,OK,Thread Group 1-10,text,true,,8934,523,10,10,https://example.com/api/user/profile,412,0,0
+1709049609900,523,HTTP Request - Search,200,OK,Thread Group 1-10,text,true,,23456,645,10,10,https://example.com/api/search,501,0,0

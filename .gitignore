@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.env
+*.egg-info/
+
+# Node
+node_modules/
+performance-dashboard/frontend/dist/
+
+# Uploads (runtime only — never commit test data)
+performance-dashboard/backend/uploads/*
+!performance-dashboard/backend/uploads/.gitkeep
+
+# Build artifacts
+*.exe
+dist/
+build/
+target/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# Logs
+*.log
+jmeter.log
+
+# Temp files
+*.tmp
+*.bak

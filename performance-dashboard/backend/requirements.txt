@@ -1,0 +1,22 @@
+# Core Dependencies
+flask>=3.0.0
+flask-cors>=4.0.0
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Data Processing
+python-dateutil>=2.8.2
+
+# Statistical Analysis
+scipy>=1.11.0
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+
+# Code Quality
+pylint==3.0.3
+black==23.12.1
+
+# Development
+python-dotenv==1.0.0
